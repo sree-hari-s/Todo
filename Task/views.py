@@ -20,18 +20,18 @@ def notcompletedTask(request,pk):
     task.save()
     return redirect('home')
 
-def editTask(request,pk):
-    get_task=get_object_or_404(Task,pk=pk)
+def editTask(request, pk):
+    get_task = get_object_or_404(Task, pk=pk)
     if request.method == 'POST':
-        new_task=request.POST['newTask']
-        get_task.Task=new_task
+        new_task = request.POST['task']
+        get_task.task = new_task
         get_task.save()
         return redirect('home')
     else:
-        context={
-            get_task:'get_task'
+        context = {
+            'get_task': get_task,
         }
-        return render(request,'edit.html',context=context)
+        return render(request, 'edit.html', context)
     
 def deleteTask(request,pk):
     task=get_object_or_404(Task,pk=pk)
