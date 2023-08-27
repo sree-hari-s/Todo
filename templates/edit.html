@@ -15,15 +15,27 @@
 <body>
     <div class="container">
         <h3 class="pt-5 pb-5 text-center">Django TODO App - Edit Task</h3>
-        <form action="{% url 'editTask' get_task.pk %}" method="POST" style="width: 500px; margin: auto;">
+        <form action="{% url 'editTask' get_task.pk %}" method="POST" onsubmit="return validateForm()" style="width: 500px; margin: auto;">
             {% csrf_token %}
             <div class="form-group">
                 <span style="display: flex;">
-                    <input type="text" name="new_task" class="form-control" placeholder="Add a task" value="{{ get_task.Task }}">
+                    <input type="text" id="taskInput" name="new_task" class="form-control" placeholder="Add a task" value="{{ get_task.Task }}">
                     <button type="submit" class="btn btn-primary" style="width: 200px;"><i class="fa fa-plus"></i> Update</button>
                 </span>
             </div>
         </form>
     </div>
 </body>
+<script>
+    function validateForm() {
+        var taskInput = document.getElementById('taskInput');
+        
+        if (taskInput.value.trim() === '') {
+            alert('Task cannot be empty');
+            return false; // Prevent form submission
+        }
+        
+        return true; // Allow form submission
+    }
+</script>
 </html>

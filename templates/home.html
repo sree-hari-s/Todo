@@ -58,17 +58,29 @@
         <div class="row">
             <div class="col-md-6 col-lg-6 p-0" style="position: absolute; bottom: 50px;">
                 <!-- To Do Form -->
-                <form action="{% url 'addTask' %}" method="POST" >
+                <form action="{% url 'addTask' %}" method="POST" onsubmit="return validateForm()">
                     {% csrf_token %}
                     <div class="form-group">
                         <span style="display: flex;">
-                            <input type="text" name="task" class="form-control" placeholder="Add a task">
+                            <input type="text" id="taskInput" name="task" class="form-control" placeholder="Add a task">
                             <button type="submit" class="btn btn-primary" style="width: 200px;"><i class="fa fa-plus"></i> Add</button>
                         </span>
                     </div>
-                </form>
+                </form>                            
             </div>
         </div>
     </div>
 </body>
+<script>
+    function validateForm() {
+        var taskInput = document.getElementById('taskInput');
+        
+        if (taskInput.value.trim() === '') {
+            alert('Task cannot be empty');
+            return false; // Prevent form submission
+        }
+        
+        return true; // Allow form submission
+    }
+</script>
 </html>
