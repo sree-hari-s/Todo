@@ -23,8 +23,9 @@ def notcompletedTask(request,pk):
 def editTask(request, pk):
     get_task = get_object_or_404(Task, pk=pk)
     if request.method == 'POST':
-        new_task = request.POST['task']
-        get_task.task = new_task
+        new_task = request.POST['new_task']
+        get_task.Task = new_task
+        print(new_task)
         get_task.save()
         return redirect('home')
     else:
