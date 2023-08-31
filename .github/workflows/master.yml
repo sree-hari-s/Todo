@@ -17,4 +17,4 @@ jobs:
           server: greatkartproject.website
           username: ${{ secrets.ftp_username }}
           password: ${{ secrets.ftp_password }}
-          server-dir: /deploy/
+          server-dir: /todo/
